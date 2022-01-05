@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+group 'com.gufli.brick'
+version '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.gufli.brick.Main'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spongepowered.org/maven' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Minestom:Minestom:-SNAPSHOT'
+    implementation 'commons-cli:commons-cli:1.4'
+}
+
+test {
+    useJUnitPlatform()
+}
