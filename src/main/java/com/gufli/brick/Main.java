@@ -2,6 +2,7 @@ package com.gufli.brick;
 
 import com.gufli.brick.commands.ReloadCommand;
 import com.gufli.brick.commands.StopCommand;
+import com.gufli.brick.terminal.BrickTerminalConsole;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.optifine.OptifineSupport;
@@ -40,10 +41,13 @@ public class Main {
             port = Integer.parseInt(portStr);
         }
 
+        // disable terminal
+        System.setProperty("minestom.terminal.disabled", "false");
 
         // Initialization
         MinecraftServer minecraftServer = MinecraftServer.init();
 
+        // offline-mode
         if ( !cmd.hasOption("offline-mode") ) {
             MojangAuth.init();
         }
@@ -59,6 +63,9 @@ public class Main {
 
         // Start the server on port 25565
         minecraftServer.start("0.0.0.0", port);
+
+        // enable better terminal
+        new BrickTerminalConsole().start();
     }
 
 }

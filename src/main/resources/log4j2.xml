@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_PATTERN">%highlightError{[%d{HH:mm:ss}] - %-5level - %-20C{1}: %minecraftFormatting{%msg}%n%xEx}</Property>
+    </Properties>
+
+    <Appenders>
+        <TerminalConsole name="Console">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </TerminalConsole>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" level="info"/>
+        </Root>
+    </Loggers>
+</Configuration>
