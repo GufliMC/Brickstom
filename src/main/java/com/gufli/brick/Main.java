@@ -2,20 +2,10 @@ package com.gufli.brick;
 
 import com.gufli.brick.commands.ReloadCommand;
 import com.gufli.brick.commands.StopCommand;
-import com.gufli.brick.generators.VoidGenerator;
 import net.minestom.server.MinecraftServer;
-import net.minestom.server.coordinate.Pos;
-import net.minestom.server.entity.Player;
-import net.minestom.server.event.GlobalEventHandler;
-import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.optifine.OptifineSupport;
-import net.minestom.server.instance.AnvilLoader;
-import net.minestom.server.instance.InstanceContainer;
-import net.minestom.server.instance.InstanceManager;
 import org.apache.commons.cli.*;
-
-import java.nio.file.Path;
 
 public class Main {
 
@@ -25,6 +15,10 @@ public class Main {
         Option portOption = new Option("p", "port", true, "server port");
         portOption.setRequired(false);
         options.addOption(portOption);
+
+        Option offlineModeOption = new Option("o", "offline-mode", false, "disable mojang auth");
+        offlineModeOption.setRequired(false);
+        options.addOption(offlineModeOption);
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd;
@@ -50,21 +44,11 @@ public class Main {
         // Initialization
         MinecraftServer minecraftServer = MinecraftServer.init();
 
-        InstanceManager instanceManager = MinecraftServer.getInstanceManager();
-        InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
-        instanceContainer.setChunkGenerator(new VoidGenerator());
-        instanceContainer.setChunkLoader(new AnvilLoader(Path.of("world")));
+        if ( !cmd.hasOption("offline-mode") ) {
+            MojangAuth.init();
+        }
 
-        MojangAuth.init();
         OptifineSupport.enable();
-
-        // Add an event callback to specify the spawning instance (and the spawn position)
-        GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
-        globalEventHandler.addListener(PlayerLoginEvent.class, event -> {
-            final Player player = event.getPlayer();
-            event.setSpawningInstance(instanceContainer);
-            player.setRespawnPoint(new Pos(.5, 63, .5));
-        });
 
         MinecraftServer.getCommandManager().setUnknownCommandCallback((sender, command) -> {
             sender.sendMessage("Unknown command.");
