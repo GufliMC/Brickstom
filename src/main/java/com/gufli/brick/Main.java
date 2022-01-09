@@ -1,6 +1,5 @@
 package com.gufli.brick;
 
-import com.gufli.brick.commands.ReloadCommand;
 import com.gufli.brick.commands.StopCommand;
 import com.gufli.brick.terminal.BrickTerminalConsole;
 import net.minestom.server.MinecraftServer;
