@@ -58,7 +58,6 @@ public class Main {
         });
 
         MinecraftServer.getCommandManager().register(new StopCommand());
-        MinecraftServer.getCommandManager().register(new ReloadCommand());
 
         // Start the server on port 25565
         minecraftServer.start("0.0.0.0", port);
