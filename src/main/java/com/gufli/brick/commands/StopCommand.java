@@ -3,6 +3,7 @@ package com.gufli.brick.commands;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.ConsoleSender;
 import net.minestom.server.command.builder.Command;
+import net.minestom.server.entity.Player;
 
 public class StopCommand extends Command {
 
@@ -11,7 +12,9 @@ public class StopCommand extends Command {
 
         setCondition((sender, commandString) ->
                 sender instanceof ConsoleSender ||
-                sender.hasPermission("brick.stop"));
+                        sender.hasPermission("brick.stop") ||
+                        (sender instanceof Player p && p.getPermissionLevel() == 4)
+        );
 
         setDefaultExecutor((sender, context) -> stop());
     }
