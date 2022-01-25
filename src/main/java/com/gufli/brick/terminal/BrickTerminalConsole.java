@@ -29,8 +29,10 @@ public class BrickTerminalConsole extends SimpleTerminalConsole {
 
     @Override
     protected void shutdown() {
+        MinecraftServer.LOGGER.info("Shutting down server...");
         try {
             MinecraftServer.stopCleanly();
+            System.exit(0);
         } catch (Throwable t) {
             System.exit(1);
         }

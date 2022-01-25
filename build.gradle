@@ -11,6 +11,7 @@ version '1.0-SNAPSHOT'
 jar {
     manifest {
         attributes 'Main-Class': 'com.gufli.brick.Main'
+        attributes 'Multi-Release': true
     }
 }
 
@@ -25,6 +26,7 @@ dependencies {
     // minestom
     implementation('com.github.Minestom:Minestom:1.18-SNAPSHOT') {
         exclude group: 'org.tinylog'
+        //exclude group: 'org.jboss.shrinkwrap.resolver'
     }
 
     // cli options
@@ -39,8 +41,8 @@ dependencies {
     implementation 'org.jline:jline-terminal:3.21.0'
     implementation 'net.minecrell:terminalconsoleappender:1.3.0'
 
-    // wtf
-    implementation 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.1.4'
+    // extension dependencies
+    compileOnly 'org.apache.maven:maven-aether-provider:3.0.5'
 }
 
 test {
@@ -49,4 +51,5 @@ test {
 
 shadowJar {
     transform(Log4j2PluginsCacheFileTransformer)
+    mergeServiceFiles()
 }
