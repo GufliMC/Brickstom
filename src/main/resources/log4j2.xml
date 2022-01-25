@@ -9,8 +9,8 @@
             <PatternLayout pattern="${LOG_PATTERN}" />
         </TerminalConsole>
 
-        <RollingFile name="fileLogger" fileName="./logs/brick-latest.log"
-                     filePattern="./logs/brick-zarchive-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="fileLogger" fileName="./logs/latest.log"
+                     filePattern="./logs/zarchive-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
@@ -19,8 +19,9 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console" level="info"/>
+            <AppenderRef ref="fileLogger" level="debug"/>
         </Root>
     </Loggers>
 </Configuration>

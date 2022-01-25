@@ -24,9 +24,8 @@ repositories {
 dependencies {
 
     // minestom
-    implementation('com.github.Minestom:Minestom:1.18-SNAPSHOT') {
+    implementation('com.github.Minestom:Minestom:-SNAPSHOT') {
         exclude group: 'org.tinylog'
-        //exclude group: 'org.jboss.shrinkwrap.resolver'
     }
 
     // cli options
@@ -41,8 +40,8 @@ dependencies {
     implementation 'org.jline:jline-terminal:3.21.0'
     implementation 'net.minecrell:terminalconsoleappender:1.3.0'
 
-    // extension dependencies
-    compileOnly 'org.apache.maven:maven-aether-provider:3.0.5'
+    // external dependency resolver implementation
+    compileOnly 'org.apache.maven:maven-aether-provider:3.3.9'
 }
 
 test {

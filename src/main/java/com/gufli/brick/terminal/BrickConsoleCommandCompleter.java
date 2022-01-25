@@ -9,9 +9,6 @@ import net.minestom.server.command.builder.arguments.Argument;
 import net.minestom.server.command.builder.parser.ArgumentQueryResult;
 import net.minestom.server.command.builder.parser.CommandParser;
 import net.minestom.server.command.builder.parser.CommandQueryResult;
-import net.minestom.server.command.builder.suggestion.Suggestion;
-import net.minestom.server.command.builder.suggestion.SuggestionCallback;
-import net.minestom.server.entity.Player;
 import net.minestom.server.utils.StringUtils;
 import org.jline.reader.Candidate;
 import org.jline.reader.Completer;
@@ -21,7 +18,6 @@ import org.jline.reader.ParsedLine;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,21 +37,21 @@ public class BrickConsoleCommandCompleter implements Completer {
             return;
         }
 
-        final CommandQueryResult commandQueryResult = CommandParser.findCommand(commandString);
+        final CommandQueryResult commandQueryResult = CommandParser.findCommand(MinecraftServer.getCommandManager().getDispatcher(), commandString);
         if (commandQueryResult == null) {
             return;
         }
 
-        final ArgumentQueryResult queryResult = CommandParser.findEligibleArgument(commandQueryResult.command,
-                commandQueryResult.args, commandString, commandString.endsWith(StringUtils.SPACE), false,
+        final ArgumentQueryResult queryResult = CommandParser.findEligibleArgument(commandQueryResult.command(),
+                commandQueryResult.args(), commandString, commandString.endsWith(StringUtils.SPACE), false,
                 CommandSyntax::hasSuggestion, Argument::hasSuggestion);
         if (queryResult == null) {
             final String cmdName = args[args.length - 1];
-            candidates.addAll(autoCompleteCommand(commandQueryResult.command.getSubcommands(), cmdName));
+            candidates.addAll(autoCompleteCommand(commandQueryResult.command().getSubcommands(), cmdName));
             return;
         }
 
-        final Argument<?> argument = queryResult.argument;
+        final Argument<?> argument = queryResult.argument();
         if ( !argument.hasSuggestion() ) {
             return;
         }
