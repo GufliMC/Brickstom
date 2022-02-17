@@ -1,4 +1,4 @@
-package com.gufli.brick.commands;
+package org.minestombrick.brick.commands;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.ConsoleSender;

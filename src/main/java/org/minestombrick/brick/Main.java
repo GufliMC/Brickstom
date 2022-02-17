@@ -1,7 +1,7 @@
-package com.gufli.brick;
+package org.minestombrick.brick;
 
-import com.gufli.brick.commands.StopCommand;
-import com.gufli.brick.terminal.BrickTerminalConsole;
+import org.minestombrick.brick.commands.StopCommand;
+import org.minestombrick.brick.terminal.BrickTerminalConsole;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.optifine.OptifineSupport;

@@ -1,4 +1,4 @@
-package com.gufli.brick.terminal;
+package org.minestombrick.brick.terminal;
 
 import net.minecrell.terminalconsole.SimpleTerminalConsole;
 import net.minestom.server.MinecraftServer;

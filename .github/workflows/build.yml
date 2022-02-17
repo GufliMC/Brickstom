@@ -7,28 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  test-and-build:
-    runs-on: ubuntu-latest
+  test:
+    uses: MinestomBrick/.github/.github/workflows/java-gradle-test.yml@main
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      - name: Executing permissions for graddle
-        run: 'chmod +x gradlew'
-
-#      - name: Test with Gradle
-#        run: './gradlew test'
-
-      - name: Build with Gradle
-        run: './gradlew shadowJar'
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: BrickPermissions
-          path: 'build/libs/Brick-*.jar'
-          if-no-files-found: 'error'
+  pre-release:
+    needs: test
+    uses: MinestomBrick/.github/.github/workflows/java-gradle-github-release.yml@main

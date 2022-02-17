@@ -10,7 +10,7 @@ version '1.0-SNAPSHOT'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.gufli.brick.Main'
+        attributes 'Main-Class': 'org.minestombrick.brick.Main'
         attributes 'Multi-Release': true
     }
 }
