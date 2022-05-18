@@ -1,4 +1,4 @@
-package org.minestombrick.brick.terminal;
+package com.guflimc.brickstom.terminal;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.CommandManager;

@@ -2,15 +2,16 @@ import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCach
 
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'pl.allegro.tech.build.axion-release' version '1.13.6'
 }
 
-group 'com.gufli.brick'
-version '1.0-SNAPSHOT'
+group 'com.guflimc.brickstom'
+version = scmVersion.version
 
 jar {
     manifest {
-        attributes 'Main-Class': 'org.minestombrick.brick.Main'
+        attributes 'Main-Class': 'com.guflimc.brickstom.Main'
         attributes 'Multi-Release': true
     }
 }

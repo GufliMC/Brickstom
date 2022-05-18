@@ -1,7 +1,7 @@
-package org.minestombrick.brick;
+package com.guflimc.brickstom;
 
-import org.minestombrick.brick.commands.StopCommand;
-import org.minestombrick.brick.terminal.BrickTerminalConsole;
+import com.guflimc.brickstom.commands.StopCommand;
+import com.guflimc.brickstom.terminal.BrickTerminalConsole;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.optifine.OptifineSupport;
@@ -63,6 +63,7 @@ public class Main {
         minecraftServer.start("0.0.0.0", port);
 
         // enable better terminal
+        System.out.println("ola");
         new BrickTerminalConsole().start();
     }
 
