@@ -1,14 +1,13 @@
-# Brick
+# Brickstom
 
 A server implementation for [Minestom](https://github.com/Minestom/Minestom). This is the bare minimum.
 
 ## Install
 
-Get the latest jar file from [Github actions](https://github.com/MinestomBrick/BrickWorlds/actions) 
-and execute it with:
+Get the latest jar file from the [releases](https://github.com/GufliMC/Brickstom/releases) and execute it with:
 
 ```
-java -jar Brick-<version>.jar
+java -jar Brickstom-<version>.jar
 ```
 
 ## Launch options
@@ -21,6 +20,6 @@ java -jar Brick-<version>.jar
 
 ## Commands
 
-| Command | Permission | Description                |
-|---------|------------|----------------------------|
-| /stop   | brick.stop | Gracefully stop the server |
+| Command | Permission     | Description                |
+|---------|----------------|----------------------------|
+| /stop   | brickstom.stop | Gracefully stop the server |

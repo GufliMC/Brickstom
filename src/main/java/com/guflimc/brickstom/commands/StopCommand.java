@@ -12,7 +12,7 @@ public class StopCommand extends Command {
 
         setCondition((sender, commandString) ->
                 sender instanceof ConsoleSender ||
-                        sender.hasPermission("brick.stop") ||
+                        sender.hasPermission("brickstom.stop") ||
                         (sender instanceof Player p && p.getPermissionLevel() == 4)
         );
 
