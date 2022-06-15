@@ -63,7 +63,6 @@ public class Main {
         minecraftServer.start("0.0.0.0", port);
 
         // enable better terminal
-        System.out.println("ola");
         new BrickTerminalConsole().start();
     }
 
