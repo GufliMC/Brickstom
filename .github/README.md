@@ -12,10 +12,11 @@ java -jar Brickstom-<version>.jar
 
 ## Launch options
 
-| Format                  | Description                   |
-|-------------------------|-------------------------------|
-| ```-p --port <port>```  | Change the server port        |
-| ```-o --offline-mode``` | Disable mojang authentication |
+| Format                            | Description                   |
+|-----------------------------------|-------------------------------|
+| ```-p --port <port>```            | Change the server port        |
+| ```-o --offline-mode```           | Disable mojang authentication |
+| ```-ps --proxy-secret <secret>``` | Enable proxy protection       |
 
 
 ## Commands

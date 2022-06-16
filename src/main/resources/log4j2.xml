@@ -19,6 +19,9 @@
         </RollingFile>
     </Appenders>
     <Loggers>
+        <!-- disable warnings for external dependency loading -->
+        <Logger name="org.jboss.shrinkwrap.resolver.impl.maven.logging.LogTransferListener" level="error" />
+
         <Root level="debug">
             <AppenderRef ref="Console" level="info"/>
             <AppenderRef ref="fileLogger" level="debug"/>

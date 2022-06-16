@@ -11,7 +11,7 @@ version = scmVersion.version
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.guflimc.brickstom.Main'
+        attributes 'Main-Class': 'com.guflimc.brickstom.Brickstom'
         attributes 'Multi-Release': true
     }
 }
@@ -33,16 +33,17 @@ dependencies {
     implementation 'commons-cli:commons-cli:1.5.0'
 
     // logging
-    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
-    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+//    implementation 'org.slf4j:log4j-over-slf4j:1.7.36'
+    implementation 'org.slf4j:jul-to-slf4j:1.7.36'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:+'
 
     // console input
     implementation 'org.jline:jline-reader:3.21.0'
     implementation 'org.jline:jline-terminal:3.21.0'
-    implementation 'net.minecrell:terminalconsoleappender:1.3.0'
 
-    // external dependency resolver implementation
-    compileOnly 'org.apache.maven:maven-aether-provider:3.3.9'
+    // console colors
+    implementation 'net.minecrell:terminalconsoleappender:1.3.0'
 }
 
 test {

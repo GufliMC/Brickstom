@@ -1,13 +1,14 @@
-name: Gradle test and pre-release
+name: Gradle github release
 
 on:
   push:
-    branches: [main]
+    tags:
+    - '*'
 
 jobs:
   test:
     uses: GufliOfficial/.github/.github/workflows/java-gradle-test.yml@main
 
-  pre-release:
+  release:
     needs: test
     uses: GufliOfficial/.github/.github/workflows/java-gradle-github-release.yml@main
