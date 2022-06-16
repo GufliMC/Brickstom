@@ -5,6 +5,7 @@ import com.guflimc.brickstom.terminal.BrickTerminalConsole;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.event.player.PlayerCommandEvent;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.optifine.OptifineSupport;
 import net.minestom.server.extras.velocity.VelocityProxy;
@@ -81,6 +82,12 @@ public class Brickstom {
         MinecraftServer.getCommandManager().setUnknownCommandCallback((sender, command) -> {
             sender.sendMessage("Unknown command.");
         });
+
+        // log players executing commands
+        MinecraftServer.getGlobalEventHandler().addListener(PlayerCommandEvent.class, e -> {
+            if ( e.isCancelled() ) return;
+            logger.info("{} issued command: {}", e.getPlayer().getUsername(), e.getCommand());
+        }).setPriority(Integer.MAX_VALUE);
 
         // default commands
         MinecraftServer.getCommandManager().register(new StopCommand());
