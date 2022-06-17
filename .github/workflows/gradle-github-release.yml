@@ -15,13 +15,14 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - uses: actions/checkout@v3
+        with:
           fetch-depth: '0'
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
@@ -35,11 +36,6 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
 
-      - uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: '${{ steps.get-latest-tag.outputs.tag }}-build-${{ steps.date.outputs.date }}'
-          message: '${{ steps.get-latest-tag.outputs.tag }}: Minestom update at ${{ steps.date.outputs.date }}'
-
       - name: Build with Gradle
         run: './gradlew shadowJar'
 
@@ -48,3 +44,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           files: build/libs/*.jar
+          title: '${{ steps.get-latest-tag.outputs.tag }}: Minestom update at ${{ steps.date.outputs.date }}'
