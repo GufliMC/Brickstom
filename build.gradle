@@ -53,4 +53,5 @@ test {
 shadowJar {
     transform(Log4j2PluginsCacheFileTransformer)
     mergeServiceFiles()
+    archiveClassifier.set("")
 }
