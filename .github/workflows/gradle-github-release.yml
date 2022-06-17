@@ -32,9 +32,16 @@ jobs:
         with:
           ref: '${{ steps.get-latest-tag.outputs.tag }}'
 
-      - name: Get current timestamp
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+      - name: Get current datetime
+        id: datetime
+        run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
+
+      - name: Get current datetime in version format
+        id: datetimever
+        run: echo "::set-output name=datetime::$(date +'%Y%m%d%H%M%S')"
+
+      - name: Set local tag
+        run: 'git tag ${{ steps.get-latest-tag.outputs.tag }}-${{ steps.datetimever.outputs.datetime }}'
 
       - name: Build with Gradle
         run: './gradlew shadowJar'
@@ -44,4 +51,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           files: build/libs/*.jar
-          title: '${{ steps.get-latest-tag.outputs.tag }}: Minestom update at ${{ steps.date.outputs.date }}'
+          automatic_release_tag: '${{ steps.get-latest-tag.outputs.tag }}'
+          title: '${{ steps.get-latest-tag.outputs.tag }}: Build at ${{ steps.datetime.outputs.datetime }}'

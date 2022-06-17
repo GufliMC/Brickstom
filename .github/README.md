@@ -4,7 +4,7 @@ A simple server implementation for [Minestom](https://github.com/Minestom/Minest
 
 ## Install
 
-A new release will be generated daily at 00:00 UTC with the latest changes from Minestom.
+A new release will be generated daily at 00:00 UTC with the latest changes from [Minestom](https://github.com/Minestom/Minestom) upstream.
 
 Get the latest jar file from the [releases](https://github.com/GufliMC/Brickstom/releases) and execute it with:
 
