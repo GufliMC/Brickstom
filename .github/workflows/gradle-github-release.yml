@@ -13,4 +13,37 @@ jobs:
 
   release:
     needs: test
-    uses: GufliOfficial/.github/.github/workflows/java-gradle-github-release.yml@main
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          fetch-depth: '0'
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions/checkout@v3
+        with:
+          ref: '${{ steps.get-latest-tag.outputs.tag }}'
+
+      - name: Get current timestamp
+          id: date
+          run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: '${{ steps.get-latest-tag.outputs.tag }}-build-${{ steps.date.outputs.date }}'
+          message: '${{ steps.get-latest-tag.outputs.tag }}: Minestom update at ${{ steps.date.outputs.date }}'
+
+      - name: Build with Gradle
+        run: './gradlew shadowJar'
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
+          files: build/libs/*.jar

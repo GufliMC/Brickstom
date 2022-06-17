@@ -1,10 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
 
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
-
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
@@ -12,7 +7,7 @@ plugins {
 }
 
 group 'com.guflimc.brickstom'
-version = DateTimeFormatter.ofPattern("yyyyMMddHHmmss").withZone(ZoneId.from(ZoneOffset.UTC)).format(Instant.now()) + "-" + scmVersion.version
+version = scmVersion.version
 
 jar {
     manifest {
