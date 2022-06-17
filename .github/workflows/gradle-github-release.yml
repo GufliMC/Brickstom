@@ -40,11 +40,11 @@ jobs:
         id: datetimever
         run: echo "::set-output name=datetime::$(date +'%Y%m%d%H%M%S')"
 
+      - name: Update local tags for build versioning
+        run: 'git tag -d ${{ steps.get-latest-tag.outputs.tag }} && git tag ${{ steps.get-latest-tag.outputs.tag }}-${{ steps.datetimever.outputs.datetime }}'
+
       - name: Build with Gradle
         run: './gradlew shadowJar'
-
-      - name: Rename output file
-        run: 'mv build/libs/Brickstom-${{ steps.get-latest-tag.outputs.tag }}.jar build/libs/Brickstom-${{ steps.get-latest-tag.outputs.tag }}-${{ steps.datetimever.outputs.datetimever }}.jar'
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
